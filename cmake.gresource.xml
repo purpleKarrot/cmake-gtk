@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/net/purplekarrot/cmake">
+    <file compressed="true">app-menu.ui</file>
+    <file compressed="true">gears-menu.ui</file>
+    <file compressed="true">add_cache_entry.ui</file>
+    <file compressed="true">toolchain_assistant.ui</file>
+    <file compressed="true">cmake_setup.ui</file>
+  </gresource>
+</gresources>

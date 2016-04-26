@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
+<interface>
+  <requires lib="gtk+" version="3.14"/>
+  <template class="CMakeSetupWindow" parent="GtkApplicationWindow">
+    <property name="can_focus">False</property>
+    <property name="default_height">600</property>
+    <property name="default_width">800</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header">
+        <property name="visible">True</property>
+        <property name="title">CMake</property>
+        <property name="subtitle">Current Generator: Unix Makefiles</property>
+        <property name="show-close-button">True</property>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Configure</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="do_configure" swapped="no"/>
+          </object>
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Build</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="do_build" swapped="no"/>
+          </object>
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="gears">
+            <property name="visible">True</property>
+            <property name="direction">none</property>
+            <property name="use-popover">True</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="gears-icon">
+                <property name="visible">True</property>
+                <property name="icon-name">emblem-system-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="search">
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage" id="search-icon">
+                <property name="visible">True</property>
+                <property name="icon-name">edit-find-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="box1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkSearchBar" id="searchbar">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkSearchEntry" id="searchentry">
+                <signal name="search-changed" handler="search_text_changed"/>
+                <property name="width-chars">30</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="margin">10</property>
+            <child>
+              <object class="GtkScrolledWindow" id="list-scrolledwindow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">never</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTreeView" id="cache_view">
+                    <signal name="cursor-changed" handler="cursor_changed"/>
+                    <signal name="row-activated" handler="row_activated"/>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_column">2</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="treeview-selection1"/>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="name-column">
+                        <property name="expand">True</property>
+                        <property name="title" translatable="yes">Name</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="name-renderer">
+                            <property name="ellipsize">middle</property>
+                            <property name="weight-set">True</property>
+                          </object>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                            <attribute name="weight">3</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="value-column">
+                        <property name="expand">True</property>
+                        <property name="title" translatable="yes">Value</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="value-renderer">
+                            <property name="ellipsize">end</property>
+                            <property name="weight-set">True</property>
+                          </object>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                            <attribute name="weight">3</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolbar" id="add-remove-toolbar">
+                <property name="visible">True</property>
+                <property name="icon_size">1</property>
+                <property name="icon_size_set">True</property>
+                <property name="toolbar_style">icons</property>
+                <style>
+                  <class name="inline-toolbar"/>
+                </style>
+                <child>
+                  <object class="GtkToolButton" id="add_entry_toolbutton">
+                    <signal name="clicked" handler="add_entry"/>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">list-add-symbolic</property>
+                    <property name="label" translatable="yes">Add Cache Entry</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToolButton" id="remove_entry_toolbutton">
+                    <signal name="clicked" handler="remove_entry"/>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">list-remove-symbolic</property>
+                    <property name="label" translatable="yes">Remove Cache Entry</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="row_spacing">5</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel" id="label4">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Where is the source code:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFileChooserButton" id="source_directory">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action">select-folder</property>
+                <property name="create_folders">False</property>
+                <property name="title" translatable="yes">Select source directory</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label5">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Where to build he binaries:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFileChooserButton" id="binary_directory">
+                <signal name="file-set" handler="binary_directory_selected"/>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action">select-folder</property>
+                <property name="title" translatable="yes">Select build directory</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">never</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <property name="shadow_type">in</property>
+            <property name="margin">10</property>
+            <child>
+              <object class="GtkTextView" id="output_view">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="cursor_visible">False</property>
+                <property name="editable">False</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

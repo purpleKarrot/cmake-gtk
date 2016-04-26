@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="3.12"/>
+  <menu id="menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Advanced</attribute>
+        <attribute name="action">win.show-advanced</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Expand Grouped Entries</attribute>
+        <attribute name="action">win.expand-grouped-entries</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Collapse Grouped Entries</attribute>
+        <attribute name="action">win.collapse-grouped-entries</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Suppress dev Warnings (-Wno-dev)</attribute>
+        <attribute name="action">win.suppress-dev-warnings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Warn Uninitialized (--warn-uninitialized)</attribute>
+        <attribute name="action">win.warn-uninitialized</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Warn Unused (--warn-unused-vars)</attribute>
+        <attribute name="action">win.warn-unused</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Debug Output</attribute>
+        <attribute name="action">win.debug-output</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Reload Cache</attribute>
+        <attribute name="action">win.reload-cache</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Delete Cache</attribute>
+        <attribute name="action">win.delete-cache</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
