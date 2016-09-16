@@ -48,24 +48,19 @@ public class Wrapper : Object
     string[] generators = {};
 
     string standard_output;
-    string[] argv = {cmake_cmd, "--help"};
+    string[] argv = {cmake_cmd, "-E", "capabilities"};
     Process.spawn_sync(null, argv, null, 0, null, out standard_output);
 
-    bool recording = false;
-    foreach (unowned string line in standard_output.split("\n"))
+    var parser = new Json.Parser();
+    parser.load_from_data(standard_output, -1);
+
+    var root_object = parser.get_root().get_object();
+    var gen_array = root_object.get_array_member("generators");
+
+    foreach (var gen in gen_array.get_elements())
     {
-      if (recording)
-      {
-        string generator = line.substring(0, line.index_of_char('='))._strip();
-        if (generator.length > 0 && generator != "KDevelop3")
-        {
-          generators += generator;
-        }
-      }
-      else if (line == "The following generators are available on this platform:")
-      {
-        recording = true;
-      }
+      var generator = gen.get_object();
+      generators += generator.get_string_member("name");
     }
 
     return generators;

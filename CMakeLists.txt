@@ -1,4 +1,4 @@
-# Copyright (C) 2015 Daniel Pfeifer <daniel@pfeifer-mail.de>
+# Copyright (C) 2015-2016 Daniel Pfeifer <daniel@pfeifer-mail.de>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,17 +13,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 project(CMakeGTK C)
 
 set(CMAKE_MODULE_PATH "${CMakeGTK_SOURCE_DIR}/CMake")
-find_package(Vala 0.26 REQUIRED)
+find_package(Vala 0.32 REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED
   glib-2.0
   gobject-2.0
   gtk+-3.0
+  json-glib-1.0
   )
 
 vala_precompile(VALA_SRCS
@@ -39,9 +40,10 @@ vala_precompile(VALA_SRCS
     property-editor.vala
   PACKAGES
     gtk+-3.0
+    json-glib-1.0
   OPTIONS
     --disable-warnings
-    --target-glib=2.38
+    --target-glib=2.48
     --gresources=${CMakeGTK_SOURCE_DIR}/cmake.gresource.xml
   )
 
